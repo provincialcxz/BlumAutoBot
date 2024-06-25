@@ -2,6 +2,8 @@
 
 Эта программа помогает автоматизировать процесс игры и получить больше монет. При этом не нужно заходить в свой телеграмм аккаунт или в веб версию.
 
+[Blum](t.me/BlumCryptoBot/app?startapp=ref_D3LL3IumB9, "Ссылка на бота")
+
 1. Необходимо включить опцию проверки webview (в `Telegram settings => Advanced => Experimental settings => Enable webview inspecting`)
 2. Нажмите **F12**, затем перейдите на вкладке консоль
 3. Скопируйте **Authorization** и введите ее в программу
