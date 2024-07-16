@@ -1,4 +1,8 @@
-﻿namespace BlumBot
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using System;
+
+namespace BlumBot
 {
     class Program
     {
@@ -13,7 +17,7 @@
             {
                 try
                 {
-                    int choice = help.platform();
+                    int choice = help.choice_platform();
                     int repetitions = help.replay();
                     int points = help.scores();
 
