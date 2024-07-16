@@ -20,14 +20,10 @@
 * Количество баллов это то сколько монет вы получите за одну игру (если нажать **Enter** программа выберет рандомное количество от 260 до 280)
 
 ### Использование
-1. Необходимо включить опцию проверки webview (в `Telegram settings => Advanced => Experimental settings => Enable webview inspecting`)
-![Картинка](/images/first.jpg)
-2. Запустите приложение Blum и нажмите **F12**, затем перейдите на вкладку сеть
-![Картинка](/images/second.jpg)
-3. Обновите приложение Blum
-![Картинка](/images/third.jpg)
-4. Скопируйте **Authorization** и введите ее в программу
-![Картинка](/images/fourth.jpg)
+1. Необходимо включить опцию проверки webview (в `Telegram settings => Advanced => Experimental settings => Enable webview inspecting`)  ![Картинка](/images/first.jpg)
+2. Запустите приложение Blum и нажмите **F12**, затем перейдите на вкладку сеть  ![Картинка](/images/second.jpg)
+3. Обновите приложение Blum  ![Картинка](/images/third.jpg)
+4. Скопируйте **Authorization** и введите ее в программу  ![Картинка](/images/fourth.jpg)
 
 ### License
 
