@@ -4,23 +4,31 @@
 
 Ссылка на бота: [Blum](https://t.me/BlumCryptoBot/app?startapp=ref_D3LL3IumB9)
 
-1. Необходимо включить опцию проверки webview (в `Telegram settings => Advanced => Experimental settings => Enable webview inspecting`)
-2. Нажмите **F12**, затем перейдите на вкладке консоль
-3. Скопируйте **Authorization** и введите ее в программу
-
 **Я не несу ответственности за блокировку вашей учетной записи**
 
-### Как это работает?
+### Установка
+1. Скачайте на свой пк [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+2. Скачайте файл программы: [ФАЙЛ](https://github.com/provincialcxz/BlumAutoBot/releases/download/Blum/BumBot.exe)
+3. Запустите файл
 
+### Быстрый запуск
+* [Релиз](https://github.com/provincialcxz/BlumAutoBot/releases/tag/Blum)
+
+### Как это работает?
 * При выборе платформы стоит обратить внимание на то с какого устройства вы обычно играете
 * Количество повторений это колличество игр которые сделает программа (билетики)
 * Количество баллов это то сколько монет вы получите за одну игру (если нажать **Enter** программа выберет рандомное количество от 260 до 280)
 
-### Установка
+### Использование
+1. Необходимо включить опцию проверки webview (в `Telegram settings => Advanced => Experimental settings => Enable webview inspecting`)
+![Картинка](/images/first.jpg)
+2. Запустите приложение Blum и нажмите **F12**, затем перейдите на вкладку сеть
+![Картинка](/images/second.jpg)
+3. Обновите приложение Blum
+![Картинка](/images/third.jpg)
+4. Скопируйте **Authorization** и введите ее в программу
+![Картинка](/images/fourth.jpg)
 
-1. Склонируйте репозиторий `git clone https://github.com/provincialcxz/BlumAutoBot.git`
-2. Перейдите в папку с проектом 
-3. Откройте проект в редакторе и запустите
+### License
 
-### Быстрый запуск
-* [Релиз](https://github.com/provincialcxz/BlumAutoBot/releases/tag/first)
+[MIT licensed](LICENSE).
