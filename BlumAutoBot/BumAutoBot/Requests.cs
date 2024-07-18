@@ -4,6 +4,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Text.Json;
+using System.Globalization;
 
 namespace BlumBot
 {
@@ -151,6 +154,7 @@ namespace BlumBot
 
             if (!response.IsSuccessStatusCode)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                 {
                     Console.WriteLine("Срок действия токенов истек. Пожалуйста, введите действительный токен авторизации.");
@@ -160,18 +164,35 @@ namespace BlumBot
                     string errorMessage = await response.Content.ReadAsStringAsync();
                     Console.WriteLine($"Ошибка: {errorMessage}");
                 }
-                return $"Итерация {iteration} не удалась.";
+                Console.ResetColor();
+                return $"провал.";
+                
             }
 
             string responseContent = await response.Content.ReadAsStringAsync();
-            Console.WriteLine($"Ответ от /game/play (итерация {iteration}):");
-            Console.WriteLine(responseContent);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Ответ от /game/play (итерация {iteration}): " + responseContent);
+            Console.ResetColor();
 
             var json = JObject.Parse(responseContent);
             string gameId = json["gameId"].ToString();
 
-            Console.WriteLine($"Итерация {iteration}: Ждите 32 секунды...");
-            await Task.Delay(32000);
+            Console.WriteLine($"Итерация {iteration}: ");
+
+            int totalDuration = 32000, progressBarLength = 50;
+            int updateInterval = totalDuration / progressBarLength;
+
+            Console.CursorVisible = false;
+            for (int i = 0; i <= progressBarLength; i++)
+            {
+                Console.Write("\r[");
+                Console.Write(new string('#', i));
+                Console.Write(new string(' ', progressBarLength - i));
+                Console.Write($"] {i * 2}%");
+                Thread.Sleep(updateInterval);
+            }
+            Console.CursorVisible = true;
+            Console.WriteLine();
 
             client.DefaultRequestHeaders.Clear();
             client = choiceplatform(authorizationToken, choice);
@@ -190,14 +211,70 @@ namespace BlumBot
             if (!response.IsSuccessStatusCode)
             {
                 string errorMessage = await response.Content.ReadAsStringAsync();
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"Ошибка от /game/claim (Итерация {iteration}): {errorMessage}");
-                return $"Итерация {iteration} не удалась.";
+                Console.ResetColor();
+                return $"провал.";
             }
 
-            Console.WriteLine($"Ответ от /game/claim (Итерация {iteration}):");
-            Console.WriteLine(responseContent);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Ответ от /game/claim (Итерация {iteration}): " + responseContent);
+            Console.ResetColor();
 
-            return $"Итерация {iteration} завершена успешно.";
+            return $"успех.";
+        }
+
+        public async Task GetBalanceAsync(string authorizationToken, int choice)
+        {
+            Uri uri = new Uri("https://game-domain.blum.codes/api/v1/user/balance");
+            HttpClient client = choiceplatform(authorizationToken, choice);
+            HttpResponseMessage response = await client.GetAsync(uri);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Не удалось восстановить баланс.");
+                return;
+            }
+
+            string responseContent = await response.Content.ReadAsStringAsync();
+
+            JObject json;
+            try
+            {
+                json = JObject.Parse(responseContent);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Не удалось разобрать JSON: " + ex.Message);
+                return;
+            }
+
+            if (json["availableBalance"] == null || json["playPasses"] == null)
+            {
+                Console.WriteLine("JSON не содержит ожидаемых свойств.");
+                return;
+            }
+
+            double availableBalance;
+            int playPasses;
+
+            try
+            {
+                availableBalance = double.Parse(json["availableBalance"].ToString(), CultureInfo.InvariantCulture);
+                playPasses = json["playPasses"].Value<int>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Не удалось преобразовать свойства JSON в правильные типы: " + ex.Message);
+                return;
+            }
+
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($"┌────────────────────────────┐");
+            Console.WriteLine($"|   Blum Points: {availableBalance,-10:F2}  |");
+            Console.WriteLine($"|   Tickets: {playPasses,-14}  |");
+            Console.WriteLine($"└────────────────────────────┘");
+            Console.ResetColor();
         }
     }
 }

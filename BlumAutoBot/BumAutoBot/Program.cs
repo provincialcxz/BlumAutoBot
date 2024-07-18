@@ -18,6 +18,9 @@ namespace BlumBot
                 try
                 {
                     int choice = help.choice_platform();
+
+                    await requests.GetBalanceAsync(authorizationToken, choice);
+
                     int repetitions = help.replay();
                     int points = help.scores();
 
@@ -32,12 +35,20 @@ namespace BlumBot
 
                     for (int i = 0; i < results.Length; i++)
                     {
-                        Console.WriteLine($"Результат итерации {i + 1}:\n{results[i]}\n");
+                        if (results[i] == "успех.")
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        else
+                            Console.ForegroundColor = ConsoleColor.Red;
+
+                        Console.WriteLine($"Результат итерации {i + 1}: {results[i]}\n");
+                        Console.ResetColor();
                     }
                 }
                 catch (Exception ex)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine($"Ошибка: {ex.Message}");
+                    Console.ResetColor();
                 }
 
                 Console.WriteLine("Еще разок? (yes/no): ");

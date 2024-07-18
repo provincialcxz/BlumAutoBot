@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Text;
+using System.Net;
 
 namespace BlumBot
 {
@@ -36,11 +40,16 @@ namespace BlumBot
                 Console.WriteLine("2 - Android");
                 Console.WriteLine("3 - Windows PC");
                 Console.WriteLine("4 - MacOS");
+                Console.Write("Ваш выбор: ");
                 int choice = Int32.Parse(Console.ReadLine());
                 if (choice >= 1 && choice <= 4)
                     return choice;
                 else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Вы ввели не правильное значение!");
+                    Console.ResetColor();
+                }
             }
         }
 
@@ -53,11 +62,19 @@ namespace BlumBot
                 Console.WriteLine("2 - IOS 16");
                 Console.WriteLine("3 - IOS 17");
                 Console.WriteLine("4 - IOS 18");
+                Console.WriteLine("0 - Назад");
+                Console.Write("Ваш выбор: ");
                 int choice = Int32.Parse(Console.ReadLine());
+                if (choice == 0)
+                    choice_platform();
                 if (choice >= 1 && choice <= 4)
                     return choice;
                 else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Вы ввели не правильное значение!");
+                    Console.ResetColor();
+                }
             }
         }
 
@@ -70,11 +87,19 @@ namespace BlumBot
                 Console.WriteLine("2 - Android 13 (Tiramisu)");
                 Console.WriteLine("3 - Android 14 (Upside Down Cake)");
                 Console.WriteLine("4 - Android 15 (Vanilla Ice Cream)");
+                Console.WriteLine("0 - Назад");
+                Console.Write("Ваш выбор: ");
                 int choice = Int32.Parse(Console.ReadLine());
+                if (choice == 0)
+                    choice_platform();
                 if (choice >= 1 && choice <= 4)
                     return choice;
                 else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Вы ввели не правильное значение!");
+                    Console.ResetColor();
+                }
             }
         }
 
@@ -86,11 +111,19 @@ namespace BlumBot
                 Console.WriteLine("1 - Windows 7");
                 Console.WriteLine("2 - Windows 10");
                 Console.WriteLine("3 - Windows 11");
+                Console.WriteLine("0 - Назад");
+                Console.Write("Ваш выбор: ");
                 int choice = Int32.Parse(Console.ReadLine());
+                if (choice == 0)
+                    choice_platform();
                 if (choice >= 1 && choice <= 3)
                     return choice;
                 else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Вы ввели не правильное значение!");
+                    Console.ResetColor();
+                }
             }
         }
 
@@ -104,11 +137,19 @@ namespace BlumBot
                 Console.WriteLine("3 - MacOS 12.7.5 (Monterey)");
                 Console.WriteLine("4 - MacOS 11.7.10 (Big Sur)");
                 Console.WriteLine("5 - MacOS 10.15.7 (Catalina)");
+                Console.WriteLine("0 - Назад");
+                Console.Write("Ваш выбор: ");
                 int choice = Int32.Parse(Console.ReadLine());
+                if (choice == 0)
+                    choice_platform();
                 if (choice >= 1 && choice <= 5)
                     return choice;
                 else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Вы ввели не правильное значение!");
+                    Console.ResetColor();
+                }
             }
         }
 
@@ -121,7 +162,9 @@ namespace BlumBot
 
                 if (repetitions < 1 || repetitions > 100)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Недопустимое количество повторений.");
+                    Console.ResetColor();
                 }
                 else if (repetitions > 5)
                 {
@@ -160,7 +203,9 @@ namespace BlumBot
                 }
                 else if (!int.TryParse(pointsInput, out points) || points < 200 || points > 280)
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Неверное значение баллов. Пожалуйста, введите число от 200 до 280.");
+                    Console.ResetColor();
                     continue;
                 }
                 else
@@ -181,7 +226,9 @@ namespace BlumBot
 
                 if (string.IsNullOrEmpty(token))
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Токен не может быть пустым. Пожалуйста, введите действительный токен авторизации.");
+                    Console.ResetColor();
                     continue;
                 }
 
