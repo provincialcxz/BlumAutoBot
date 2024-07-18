@@ -8,11 +8,11 @@
 
 ### Установка
 1. Скачайте на свой пк [.NET Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
-2. Скачайте файл программы: [ФАЙЛ](https://github.com/provincialcxz/BlumAutoBot/releases/download/Blum/BumBot.exe)
+2. Скачайте файл программы: [ФАЙЛ](https://github.com/provincialcxz/BlumAutoBot/releases/download/Blum_v1.2/BumBot.exe)
 3. Запустите файл
 
 ### Быстрый запуск
-* [Релиз](https://github.com/provincialcxz/BlumAutoBot/releases/tag/Blum)
+* [Релиз](https://github.com/provincialcxz/BlumAutoBot/releases/tag/Blum_v1.2)
 
 ### Как это работает?
 * При выборе платформы стоит обратить внимание на то с какого устройства вы обычно играете
